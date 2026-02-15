@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Companion</title>
+    <style>
+        body {
+            width: 320px;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            margin: 0;
+        }
+
+        .container {
+            padding: 12px;
+        }
+        h3{
+            margin-top: 10px 0;
+            font-size: 15px;
+            border-bottom: 1px solid #334155;
+        }
+
+        button {
+            width: 100%;
+            padding: 9px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            font-size: 13px;
+            transition: 0.2s ease;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .primary {
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 600;
+        }
+
+        .secondary {
+            background: #ef4444;
+            color: white;
+        }
+
+        textarea {
+            width: 100%;
+            height: 90px;
+            border-radius: 8px;
+            padding: 8px;
+            resize: none;
+            background: #020617;
+            color: #e5e7eb;
+            border: 1px solid #334155;
+            font-size: 12px;
+        }
+        .label {
+            font-size: 11px;
+            margin-bottom: 4px;
+            color: #94a3b8;
+        }
+
+        .original-box {
+            background: #020617;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 8px;
+            max-height: 140px;
+            overflow-y: auto;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background: #fde047;
+            color: black;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .section {
+            margin-top: 12px;
+            margin-bottom: 10px;
+        }
+
+        #flashcards div {
+            background: #020617;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+
+        .tts-controls {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .tts-controls button {
+            flex: 1;
+            font-size: 13px;
+        }
+
+        .quiz-question {
+            background: #1f1f1f;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+
+        .quiz-option {
+            display: block;
+            margin: 4px 0;
+            cursor: pointer;
+        }
+
+        .correct {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .wrong {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .explanation {
+            font-size: 12px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        #quizBox,
+        #flashcards,
+        #history {
+        max-height: 220px;
+        overflow-y: auto;
+        }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+    <h3>Smart Stydy Companion 📘</h3>
+
+    <div class="section">
+        <button id="summarize">Summarize Selected Text</button>
+        <button id="generateQA">Generate Q&A</button>
+        <button id="generateQuiz">Quiz Mode</button>
+    </div>
+
+    <div class="label">Original Text</div>
+    <div id="original" class="original-box">
+        Selected text will appear here...
+    </div>
+    <div class="tts-controls">
+        <button id="readText">🔊 Read Aloud</button>
+        <button id="stopReading">⏹ Stop</button>
+    </div>
+
+    <div class="label">Summary</div>
+    <textarea id="summary" placeholder="Summary will appear here..."></textarea>
+    
+    <div class="section">
+    <button id="exportPDF" class="primary">📄 Export as PDF</button>
+    </div>
+
+
+    <h3>Flashcards 🧠</h3>
+    <div id="flashcards"></div>
+
+    <h3>Quiz 📝</h3>
+    <div id="quizBox"></div>
+    <button id="submitQuiz" style="display: none;">Submit Quiz</button>
+
+    <h3>Recent Summaries</h3>
+    <div id="history"></div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
